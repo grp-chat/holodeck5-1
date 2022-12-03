@@ -71,7 +71,7 @@ class GridSystem {
             3: {powerName: "stun", title: "EMP Bomb"},
         }
         this.mapDefaultPowers = {
-            //"area1": [this.powerList[3], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[1]],
+            "area1": [this.powerList[3], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[1]],
             // "area2": [this.powerList[2], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[1],],
             // "area3": [this.powerList[2], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2], this.powerList[1]],
         }
