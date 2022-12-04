@@ -272,6 +272,8 @@ document.addEventListener("keyup", (e) => {
     //sock.emit('keyPress', e.keyCode);
 });
 
+document.getElementById("chatinput").focus();
+
 //============================================================================================================
 
 //============COMMAND BUILDER======================COMMAND BUILDER===================COMMAND BUILDER==========
