@@ -4,7 +4,7 @@ class Player {
         this.y = config.y;
         this.lable = config.lable;
         this.id = config.id || "GS";
-        this.startingSteps = config.startingSteps || 0;
+        this.startingSteps = config.startingSteps || 500;
         this.stepsAwardedBeforeGameStarts = 0;
         //this.maxSteps = config.maxSteps || 500;
         this.steps = config.steps || this.startingSteps;
@@ -32,6 +32,7 @@ class Player {
         this.canUsePower = true;
         this.invisible = typeof config.invisible === "undefined" ? false : config.invisible;
         this.canUseEagleEye = true;
+        this.eagleEyeActivated = false;
 
         //this.obtainedPowers = [{id: 1, power: this.invisibility}];
         //this.obtainedPowers = [{id: 1, powerName: "invisibility", duration: 10000, offPowerName: "invisibilityOff"}];
@@ -99,12 +100,14 @@ class Player {
             "1": "area1", "2": "area2", "3": "area3", "4": "area4", "5": "area5",
         }
         
+
+        if (maps[mapNum] === undefined) return;
         if (!this.canUsePower) return;
         if (!this.canUseEagleEye) return;
         if (this.area === maps[mapNum]) return;
         this.canUsePower = false;
 
-        
+        this.eagleEyeActivated = true;
         this.stunned = true;
         this.areaBeforeAcitivateEagleEye = this.area;
         this.area = "area2";
@@ -112,6 +115,9 @@ class Player {
     }
 
     deactivateEagleEye() {
+
+        if (!this.eagleEyeActivated) return;
+        this.eagleEyeActivated = false;
         this.canUsePower = true;
         this.stunned = false;
         this.area = this.areaBeforeAcitivateEagleEye;

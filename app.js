@@ -71,7 +71,7 @@ class GridSystem {
             3: {powerName: "stun", title: "EMP Bomb"},
         }
         this.mapDefaultPowers = {
-            "area1": [this.powerList[3], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[1]],
+            "area1": [this.powerList[3], this.powerList[3],this.powerList[3],this.powerList[2],this.powerList[2],this.powerList[1],this.powerList[1]],
             // "area2": [this.powerList[2], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[1],],
             // "area3": [this.powerList[2], this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2],this.powerList[2], this.powerList[1]],
         }
@@ -87,10 +87,10 @@ class GridSystem {
         };
 
         //this.extraArr = ["TCR", "LOK", "LK", "JHA", "JV", "CJH", "SZF", "JHA", "TJY", "KX"];
-        this.extraArr = ["TCR", "JX", "JZ", "TWN", "LJY", "ELI", "CUR", "LSH", "CT", "LK", "JV"];
+        //this.extraArr = ["TCR", "JX", "JZ", "TWN", "LJY", "ELI", "CUR", "LSH", "CT", "LK", "JV"];
         //this.extraArr = ["TCR", "CUR", "CT", "ELI", "JZ", "LJY", "TWN", "RYD", "JX", "LK", "JV"];
         // this.extraArr = ["TCR", "LOK", "JHA", "KN", "JT", "CJH", "CED", "KX", "TJY", "LSH", "SZF"];
-        //this.extraArr = ["TCR", "LOK", "JHA", "KN", "JT", "CJH", "CED", "KX", "TJY", "RYD", "SZF"];
+        this.extraArr = ["TCR", "LOK", "JHA", "KN", "JT", "CJH", "CED", "KX", "TJY", "RYD", "SZF"];
 
         //this.p1 = { x: 1, y: 1, lable: 2, id: this.extraArr[0], steps: this.startingSteps, area: "mainArea", wallet: 0, total: 0, storeSteps: 1000 };
         // this.playersArr = [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6, this.p7, this.p8, this.p9, this.p10];
@@ -160,6 +160,7 @@ class GridSystem {
         const {x, y} = this.defaultStartingPoints[this.startArea][playerKey];
         //const values = [x, x, y, y];
         [player.x, player.originX, player.y, player.originY] = [x, x, y, y];
+        player.originArea = "area1";
 
     }
     startingPoint(plyrSlot) {
@@ -221,9 +222,13 @@ class GridSystem {
 
         this.updMatrixForPlayerAtThisSpot(plyrSlot)
 
-        const index = this.teamObjects.team1Slots.indexOf(plyrSlot.id);
-        const {x, y, area} = this.teamObjects.team1OriginPosition[index];
-        [plyrSlot.x, plyrSlot.y, plyrSlot.area] = [x, y, area];
+        //const index = this.teamObjects.team1Slots.indexOf(plyrSlot.id);
+        //const {x, y, area} = this.teamObjects.team1OriginPosition[index];
+        //[plyrSlot.x, plyrSlot.y, plyrSlot.area] = [x, y, area];
+
+        plyrSlot.x = plyrSlot.originX;
+        plyrSlot.y = plyrSlot.originY;
+        plyrSlot.area = plyrSlot.originArea;
 
         this.matrix = this.allMatrixes[plyrSlot.area].gridMatrix;
 
@@ -354,7 +359,7 @@ class GridSystem {
 
         if (team === "0") {
             this.clearPlayerTeam(plyrSlot);
-            this.placePlayerAccordingToTeam(plyrSlot, 0);
+            //this.placePlayerAccordingToTeam(plyrSlot, 0);
             return;
         }
         
@@ -367,11 +372,11 @@ class GridSystem {
         //plyrSlot.obtainedPowers.push(this.powerList[1]);
 
         this.teamObjects[teamSettings[team].teamSlot].push(plyrSlot.id);
-        this.placePlayerAccordingToTeam(plyrSlot, teamSettings[team].teamNum);
+        //this.placePlayerAccordingToTeam(plyrSlot, teamSettings[team].teamNum);
         
     }
     clearPlayerTeam(plyrSlot) {
-        plyrSlot.obtainedPowers = [];
+        //plyrSlot.obtainedPowers = [];
         plyrSlot.team = "0";
         // const index = this.teamSlots1.indexOf(plyrSlot.id);
 
